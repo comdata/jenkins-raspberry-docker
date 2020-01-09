@@ -7,7 +7,7 @@ pipeline {
     agent {
         docker {
             image 'debian'
-            args '-v $HOME/.m2:/root/.m2 -v /root/.ssh:/root/.ssh -v /run/docker.sock:/run/docker.sock -v /usr/bin/docker:/usr/bin/docker'
+            args '-v $HOME/.m2:/root/.m2 -v /root/.ssh:/root/.ssh -v /run/docker.sock:/run/docker.sock'
         }
     }
 
@@ -15,6 +15,13 @@ pipeline {
 
     stages {
  
+         stage('Prepare') {
+            steps {
+                sh 'apt update'
+                sh 'apt install bash docker'
+            }
+        }
+
         stage('Checkout') {
             steps {
                 checkout scm
