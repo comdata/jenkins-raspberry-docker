@@ -17,8 +17,8 @@ pipeline {
  
          stage('Prepare') {
             steps {
-                sh 'apt update'
-                sh 'apt install bash docker'
+                sh 'apt-get update'
+                sh 'apt-get install -y bash docker'
             }
         }
 
