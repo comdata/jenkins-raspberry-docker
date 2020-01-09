@@ -27,7 +27,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh "docker login -u ${USERNAME} -p ${PASSWORD}"
                     sh "chmod 755 publish.sh"
-                    sh './publish.sh --variant alpine'
+                    sh '/bin/sh publish.sh --variant alpine'
                 }
             }
         }
