@@ -7,7 +7,8 @@ shellcheck:
 	                             jenkins-support \
 	                             *.sh
 
-build: build-debian build-alpine build-slim build-jdk11 build-centos build-openj9 build-openj9-jdk11
+build: 
+	build-alpine build-slim
 
 build-debian:
 	docker build --file Dockerfile .
@@ -69,16 +70,12 @@ test-install-plugins: prepare-test
 publish:
 	./publish.sh ; \
 	./publish.sh --variant alpine ; \
-	./publish.sh --variant slim ; \
-	./publish.sh --variant jdk11 --start-after 2.151 ; \
-	./publish.sh --variant centos --start-after 2.181 ;
+	./publish.sh --variant slim ; 
 
 publish-experimental:
 	./publish-experimental.sh ; \
 	./publish-experimental.sh --variant alpine ; \
-	./publish-experimental.sh --variant slim ; \
-	./publish-experimental.sh --variant openj9 ; \
-	./publish-experimental.sh --variant openj9-jdk11 ;
+	./publish-experimental.sh --variant slim ;
 
 clean:
 	rm -rf tests/test_helper/bats-*; \

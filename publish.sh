@@ -9,8 +9,8 @@ set -o pipefail
 
 . jenkins-support
 
-: "${DOCKERHUB_ORGANISATION:=jenkins}"
-: "${DOCKERHUB_REPO:=jenkins}"
+: "${DOCKERHUB_ORGANISATION:=comdata456}"
+: "${DOCKERHUB_REPO:=jenkins-raspberry}"
 
 JENKINS_REPO="${DOCKERHUB_ORGANISATION}/${DOCKERHUB_REPO}"
 
