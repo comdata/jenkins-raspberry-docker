@@ -6,7 +6,7 @@ pipeline {
 
     agent {
         docker {
-            image 'debian'
+            image 'debian:buster-slim'
             args '-v $HOME/.m2:/root/.m2 -v /root/.ssh:/root/.ssh -v /run/docker.sock:/run/docker.sock'
         }
     }
@@ -19,7 +19,7 @@ pipeline {
             steps {
                 sh 'apt-get update'
                 sh 'apt-get install -y bash docker'
-                sh 'PATH=$PATH:/bin:/usr/bin && export PATH'
+                sh 'which docker'
             }
         }
 
