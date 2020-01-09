@@ -19,7 +19,6 @@ pipeline {
             steps {
                 sh 'apt-get update'
                 sh 'apt-get install -y bash docker'
-                sh 'source /etc/profile'
             }
         }
 
@@ -33,7 +32,7 @@ pipeline {
         stage('Publish') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+                    sh '/usr/bin/docker login -u ${USERNAME} -p ${PASSWORD}'
                     sh 'make publish'
                 }
             }
