@@ -6,7 +6,7 @@ pipeline {
 
     agent {
         docker {
-            image 'docker'
+            image 'debian'
             args '-v $HOME/.m2:/root/.m2 -v /root/.ssh:/root/.ssh -v /run/docker.sock:/run/docker.sock'
         }
     }
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh "docker login -u ${USERNAME} -p ${PASSWORD}"
-                    sh '/bin/bash publish.sh --variant alpine'
+                    sh 'make publish'
                 }
             }
         }
