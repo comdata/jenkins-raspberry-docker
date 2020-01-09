@@ -14,11 +14,11 @@ nodeWithTimeout('docker') {
 
     if (!infra.isTrusted()) {
 
-        stage('shellcheck') {
+        //stage('shellcheck') {
             // run shellcheck ignoring error SC1091
             // Not following: /usr/local/bin/jenkins-support was not specified as input
-            sh 'make shellcheck'
-        }
+        //    sh 'make shellcheck'
+        //}
 
         /* Outside of the trusted.ci environment, we're building and testing
          * the Dockerfile in this repository, but not publishing to docker hub
@@ -49,7 +49,8 @@ nodeWithTimeout('docker') {
         def branchName = "${env.BRANCH_NAME}"
         if (branchName ==~ 'master'){
             stage('Publish Experimental') {
-                infra.withDockerCredentials {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh "docker login -u ${USERNAME} -p ${PASSWORD}"
                     sh 'make publish-experimental'
                 }
             }                 
@@ -59,7 +60,8 @@ nodeWithTimeout('docker') {
          * containers from artifacts
          */
         stage('Publish') {
-            infra.withDockerCredentials {
+            withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                sh "docker login -u ${USERNAME} -p ${PASSWORD}"
                 sh 'make publish'
             }
         }

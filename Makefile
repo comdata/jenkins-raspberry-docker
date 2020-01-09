@@ -1,6 +1,6 @@
 ROOT_DIR="$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))/"
 
-all: shellcheck build test
+all: build test
 
 shellcheck:
 	$(ROOT_DIR)/tools/shellcheck -e SC1091 \
