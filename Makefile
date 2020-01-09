@@ -67,7 +67,6 @@ test-install-plugins: prepare-test
 	DOCKERFILE=Dockerfile-alpine bats/bin/bats tests/install-plugins.bats
 
 publish:
-	./publish.sh ; \
 	./publish.sh --variant alpine ; 
 
 publish-experimental:

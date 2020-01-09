@@ -208,22 +208,12 @@ if [ "$dry_run" = true ]; then
     echo "Dry run, will not publish images"
 fi
 
-TOKEN=$(login-token)
 
 lts_version=""
 version=""
 for version in $(get-latest-versions); do
-    if is-published "$version$variant"; then
-        echo "Tag is already published: $version$variant"
-    else
         echo "$version$variant not published yet"
-        if versionLT "$start_after" "$version"; then # if start_after < version
-            echo "Version $version higher than $start_after: publishing $version$variant"
             publish "$version" "$variant"
-        else
-            echo "Version $version lower or equal to $start_after, no publishing (variant=$variant)."
-        fi
-    fi
 
     # Update lts tag (if we have an LTS version depending on $start_after)
     if versionLT "$start_after" "$version" && [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
