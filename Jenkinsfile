@@ -14,17 +14,20 @@ pipeline {
 
 
     stages {
-        deleteDir()
-
+ 
         stage('Checkout') {
-            checkout scm
+            steps {
+                checkout scm
+            }
         }
 
         
         stage('Publish') {
-            withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                sh "docker login -u ${USERNAME} -p ${PASSWORD}"
-                sh './publish.sh --variant alpine'
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+                    sh './publish.sh --variant alpine'
+                }
             }
         }
     }
