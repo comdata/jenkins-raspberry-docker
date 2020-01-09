@@ -19,6 +19,7 @@ pipeline {
             steps {
                 sh 'apt-get update'
                 sh 'apt-get install -y bash docker'
+                sh 'PATH=$PATH:/bin:/usr/bin && export PATH'
             }
         }
 
