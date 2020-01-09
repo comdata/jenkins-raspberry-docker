@@ -17,7 +17,8 @@ pipeline {
  
          stage('Prepare') {
             steps {
-                sh 'apt-get install -y apt-transport-https ca-certificates curl gpgv software-properties-common'
+                //ca-certificates
+                sh 'apt-get install -y apt-transport-https  curl gpgv software-properties-common'
                 sh 'apt-get update'
                 sh 'curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -'
                 sh 'apt-key fingerprint 0EBFCD88'
