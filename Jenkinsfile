@@ -6,7 +6,7 @@ pipeline {
 
     agent {
         docker {
-            image 'debian:buster-slim'
+            image 'debian:buster'
             args '-v $HOME/.m2:/root/.m2 -v /root/.ssh:/root/.ssh -v /run/docker.sock:/run/docker.sock'
         }
     }
