@@ -7,7 +7,7 @@ shellcheck:
 	                             jenkins-support \
 	                             *.sh
 
-build: build-alpine build-slim
+build: build-alpine
 
 build-debian:
 	docker build --file Dockerfile .
@@ -68,13 +68,11 @@ test-install-plugins: prepare-test
 
 publish:
 	./publish.sh ; \
-	./publish.sh --variant alpine ; \
-	./publish.sh --variant slim ; 
+	./publish.sh --variant alpine ; 
 
 publish-experimental:
 	./publish-experimental.sh ; \
-	./publish-experimental.sh --variant alpine ; \
-	./publish-experimental.sh --variant slim ;
+	./publish-experimental.sh --variant alpine ;
 
 clean:
 	rm -rf tests/test_helper/bats-*; \
