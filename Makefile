@@ -7,8 +7,7 @@ shellcheck:
 	                             jenkins-support \
 	                             *.sh
 
-build: 
-	build-alpine build-slim
+build: build-alpine build-slim
 
 build-debian:
 	docker build --file Dockerfile .
