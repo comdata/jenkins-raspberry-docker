@@ -17,15 +17,8 @@ pipeline {
  
          stage('Prepare') {
             steps {
-                //sh 'apt-get update'
-                //sh 'apt-get install -y apt-transport-https ca-certificates curl gnupg software-properties-common'
-                //sh 'curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -'
-                //sh 'apt-key fingerprint 0EBFCD88'
-                //sh 'add-apt-repository "deb [arch=armhf] https://download.docker.com/linux/debian $(lsb_release -cs) stable"'
-                
                 sh 'apk update'
                 sh 'apk add make bash curl'
-                //sh 'apt-get install -y bash docker-ce:armhf docker-ce-cli:armhf containerd.io:armhf'
                 sh 'which docker'
             }
         }
