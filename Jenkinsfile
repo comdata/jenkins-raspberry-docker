@@ -22,7 +22,9 @@ pipeline {
                 //sh 'curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -'
                 //sh 'apt-key fingerprint 0EBFCD88'
                 //sh 'add-apt-repository "deb [arch=armhf] https://download.docker.com/linux/debian $(lsb_release -cs) stable"'
-                //sh 'apt-get update'
+                
+                sh 'apt-get update'
+                sh 'apt-get install -y make'
                 //sh 'apt-get install -y bash docker-ce:armhf docker-ce-cli:armhf containerd.io:armhf'
                 sh 'which docker'
             }
