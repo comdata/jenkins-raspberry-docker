@@ -19,22 +19,20 @@ pipeline {
             steps {
                 sh 'apk update'
                 sh 'apk add make bash curl'
-                sh 'which docker'
             }
         }
 
-        stage('Checkout') {
+/*        stage('Checkout') {
             steps {
                 checkout scm
             }
-        }
+        }*/
 
         
         stage('Publish') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh 'docker login -u ${USERNAME} -p ${PASSWORD}'
-                    sh 'ls -lsa'
                     sh 'chmod 755 publish.sh'
                     sh 'make publish'
                 }
