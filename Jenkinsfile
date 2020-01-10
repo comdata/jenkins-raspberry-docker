@@ -23,9 +23,9 @@ pipeline {
                 //sh 'apt-key fingerprint 0EBFCD88'
                 //sh 'add-apt-repository "deb [arch=armhf] https://download.docker.com/linux/debian $(lsb_release -cs) stable"'
                 sh 'apt-get update'
-                sh 'apt-get install -y bash'
+                //sh 'apt-get install -y bash'
                 //docker-ce docker-ce-cli containerd.io'
-                sh 'which docker'
+                //sh 'which docker'
             }
         }
 
