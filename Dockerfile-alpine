@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN apk add --no-cache git openssh-client curl unzip bash ttf-dejavu coreutils tini docker openjdk11-jdk
+RUN apk add --no-cache git openssh-client curl unzip bash ttf-dejavu coreutils tini docker openjdk8
 
 ARG user=jenkins
 ARG group=jenkins
