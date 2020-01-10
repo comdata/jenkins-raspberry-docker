@@ -24,7 +24,7 @@ pipeline {
                 //sh 'add-apt-repository "deb [arch=armhf] https://download.docker.com/linux/debian $(lsb_release -cs) stable"'
                 
                 sh 'apk update'
-                sh 'apk add make'
+                sh 'apk add make bash'
                 //sh 'apt-get install -y bash docker-ce:armhf docker-ce-cli:armhf containerd.io:armhf'
                 sh 'which docker'
             }
