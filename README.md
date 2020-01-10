@@ -1,4 +1,6 @@
-# Official Jenkins Docker image
+# Un-Official Jenkins Docker image used for building for ARM
+
+alpine version only
 
 [![Docker Stars](https://img.shields.io/docker/stars/jenkins/jenkins.svg)](https://hub.docker.com/r/jenkins/jenkins/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jenkins/jenkins.svg)](https://hub.docker.com/r/jenkins/jenkins/)
