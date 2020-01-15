@@ -1,4 +1,9 @@
 pipeline {
+    triggers {
+        cron('H 4 * * *')
+        triggers { pollSCM('H */4 * * 1-5') }
+    }
+
     environment {
         registry = "comdata456/jenkins-raspberry"
         registryCredential = 'docker-hub-credentials'
