@@ -84,7 +84,7 @@ get-digest() {
 }
 
 get-latest-versions() {
-    curl -q -fsSL https://repo.jenkins-ci.org/releases/org/jenkins-ci/main/jenkins-war/maven-metadata.xml | grep '<version>.*</version>' | grep -E -o '[0-9]+(\.[0-9]+)+' | sort -V | uniq | tail -n 2
+    curl -q -fsSL https://repo.jenkins-ci.org/releases/org/jenkins-ci/main/jenkins-war/maven-metadata.xml | grep '<version>.*</version>' | grep -E -o '[0-9]+(\.[0-9]+)+' | sort -V | uniq | tail -n 2|sort -Vr
 }
 
 publish() {
@@ -211,7 +211,14 @@ fi
 
 lts_version=""
 version=""
-for version in $(get-latest-versions); do
+
+versions=$(get-latest-versions)
+
+for version in $versions; do
+     echo "$version found"
+done
+
+for version in $versions; do
         echo "$version$variant not published yet"
             publish "$version" "$variant"
 
