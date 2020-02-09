@@ -84,7 +84,7 @@ get-digest() {
 }
 
 get-latest-versions() {
-    curl -q -fsSL https://repo.jenkins-ci.org/releases/org/jenkins-ci/main/jenkins-war/maven-metadata.xml | grep '<version>.*</version>' | grep -E -o '[0-9]+(\.[0-9]+)+' | sort -V | uniq | tail -n 2|sort -Vr
+    curl -q -fsSL https://repo.jenkins-ci.org/releases/org/jenkins-ci/main/jenkins-war/maven-metadata.xml | grep '<version>.*</version>' | grep -E -o '[0-9]+(\.[0-9]+)+' | sort -V | uniq | tail -n 1|sort -Vr
 }
 
 publish() {
