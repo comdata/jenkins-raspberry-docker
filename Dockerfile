@@ -72,6 +72,9 @@ ENV COPY_REFERENCE_FILE_LOG $JENKINS_HOME/copy_reference_file.log
 
 USER ${user}
 
+HEALTHCHECK CMD curl --fail http://127.0.0.1:${http_port}/|| exit 1
+
+
 COPY jenkins-support /usr/local/bin/jenkins-support
 COPY jenkins.sh /usr/local/bin/jenkins.sh
 COPY tini-shim.sh /bin/tini
