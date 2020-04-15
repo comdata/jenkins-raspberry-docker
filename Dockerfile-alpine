@@ -60,7 +60,7 @@ EXPOSE ${agent_port}
 
 ENV COPY_REFERENCE_FILE_LOG $JENKINS_HOME/copy_reference_file.log
 
-HEALTHCHECK CMD curl --fail http://127.0.0.1:${http_port}/|| exit 1
+HEALTHCHECK CMD curl --fail http://127.0.0.1:8080/|| exit 1
 
 USER ${user}
 
