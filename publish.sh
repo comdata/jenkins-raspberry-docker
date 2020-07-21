@@ -10,9 +10,20 @@ set -o pipefail
 . jenkins-support
 
 : "${DOCKERHUB_ORGANISATION:=comdata456}"
-: "${DOCKERHUB_REPO:=jenkins-raspberry}"
+: "${DOCKERHUB_REPO:=jenkins}"
 
 JENKINS_REPO="${DOCKERHUB_ORGANISATION}/${DOCKERHUB_REPO}"
+
+architecture="$(uname -m)"
+case "$(uname -m)" in
+    i386)   architecture="386" ;;
+    i686)   architecture="386" ;;
+    x86_64) architecture="amd64" ;;
+    arm)    dpkg --print-architecture | grep -q "arm64" && architecture="arm64" || architecture="arm" ;;
+    aarch64) architecture="arm64";;
+esac
+
+echo ${architecture}
 
 cat <<EOF
 Docker repository in Use:
@@ -90,7 +101,7 @@ get-latest-versions() {
 publish() {
     local version=$1
     local variant=$2
-    local tag="${version}${variant}"
+    local tag="${version}${variant}-${architecture}"
     local sha
     local build_opts=(--no-cache --pull)
 
@@ -159,9 +170,9 @@ publish-latest() {
 
     # push latest (for master) or the name of the branch (for other branches)
     if [ -z "${variant}" ]; then
-        tag-and-push "${version}${variant}" "latest"
+        tag-and-push "${version}${variant}-${architecture}" "latest"
     else
-        tag-and-push "${version}${variant}" "${variant#-}"
+        tag-and-push "${version}${variant}-${architecture}" "${variant#-}${architecture}"
     fi
 }
 
