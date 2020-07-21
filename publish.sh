@@ -172,7 +172,7 @@ publish-latest() {
     if [ -z "${variant}" ]; then
         tag-and-push "${version}${variant}-${architecture}" "latest"
     else
-        tag-and-push "${version}${variant}-${architecture}" "${variant#-}${architecture}"
+        tag-and-push "${version}${variant}-${architecture}" "${variant#-}-${architecture}"
     fi
 }
 
