@@ -101,7 +101,8 @@ get-latest-versions() {
 publish() {
     local version=$1
     local variant=$2
-    local tag="${version}${variant}-${architecture}"
+    local tag="latest" 
+    #"${version}${variant}-${architecture}"
     local sha
     local build_opts=(--no-cache --pull)
 
@@ -118,11 +119,11 @@ publish() {
                  "${build_opts[@]+"${build_opts[@]}"}" .
 
     # " line to fix syntax highlightning
-    if [ ! "$dry_run" = true ]; then
-        docker push "${JENKINS_REPO}:${tag}"
-    else
-        echo "Dry run mode: no docker push"
-    fi
+    #if [ ! "$dry_run" = true ]; then
+    #    docker push "${JENKINS_REPO}:${tag}"
+    #else
+    #    echo "Dry run mode: no docker push"
+    #fi
 }
 
 tag-and-push() {
