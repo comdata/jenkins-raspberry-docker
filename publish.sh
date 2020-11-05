@@ -152,14 +152,14 @@ tag-and-push() {
         echo "Images ${source} [$digest_source] and ${target} [$digest_target] are already the same, not updating tags"
     else
         echo "Creating tag ${target} pointing to ${source}"
-        docker-tag "${source}" "${DOCKERHUB_ORGANISATION}" "${target}"
-        destination="${REPO:-${JENKINS_REPO}}:${target}"
-        if [ ! "$dry_run" = true ]; then
-            echo "Pushing ${destination}"
-            docker push "${destination}"
-        else
-            echo "Would push ${destination}"
-        fi
+        #docker-tag "${source}" "${DOCKERHUB_ORGANISATION}" "${target}"
+        #destination="${REPO:-${JENKINS_REPO}}:${target}"
+        #if [ ! "$dry_run" = true ]; then
+        #    echo "Pushing ${destination}"
+        #    docker push "${destination}"
+        #else
+        #    echo "Would push ${destination}"
+        #fi
     fi
 }
 
@@ -239,7 +239,7 @@ for version in $versions; do
     fi
 done
 
-publish-latest "${version}" "${variant}"
+#publish-latest "${version}" "${variant}"
 
 if [ -n "${lts_version}" ]; then
     publish-lts "${lts_version}" "${variant}"
