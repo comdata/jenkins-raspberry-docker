@@ -40,6 +40,9 @@ jobs:
           context: .
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
+          build-args: |
+           "JENKINS_VERSION=${{ env.JENKINS_VERSION }}"
+           "JENKINS_SHA=${{ env.JENKINS_SHA }}"
           push: true
           tags: comdata456/jenkins-raspberry:latest
       - name: Image digest

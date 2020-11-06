@@ -111,12 +111,15 @@ publish() {
     fi
 
     sha=$(curl -q -fsSL "https://repo.jenkins-ci.org/releases/org/jenkins-ci/main/jenkins-war/${version}/jenkins-war-${version}.war.sha256" )
+    
+    echo "JENKINS_SHA=$sha" >> $GITHUB_ENV
+    echo "JENKINS_VERSION=$version" >> $GITHUB_ENV
 
-    docker build --file "Dockerfile$variant" \
-                 --build-arg "JENKINS_VERSION=$version" \
-                 --build-arg "JENKINS_SHA=$sha" \
-                 --tag "${JENKINS_REPO}:${tag}" \
-                 "${build_opts[@]+"${build_opts[@]}"}" .
+    #docker build --file "Dockerfile$variant" \
+    #             --build-arg "JENKINS_VERSION=$version" \
+    #             --build-arg "JENKINS_SHA=$sha" \
+    #             --tag "${JENKINS_REPO}:${tag}" \
+    #             "${build_opts[@]+"${build_opts[@]}"}" .
 
     # " line to fix syntax highlightning
     #if [ ! "$dry_run" = true ]; then
