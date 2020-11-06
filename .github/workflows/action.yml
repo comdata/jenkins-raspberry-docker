@@ -46,6 +46,6 @@ jobs:
            "JENKINS_VERSION=${{ env.JENKINS_VERSION }}"
            "JENKINS_SHA=${{ env.JENKINS_SHA }}"
           push: true
-          tags: comdata456/jenkins-raspberry:latest
+          tags: comdata456/jenkins:latest,comdata456/jenkins:${{ env.JENKINS_VERSION }}
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
