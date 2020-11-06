@@ -2,6 +2,8 @@ name: Java CI
 on: 
   push:
     branches: master
+  schedule:
+    - cron:  '0 0 * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
